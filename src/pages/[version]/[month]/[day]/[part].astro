@@ -1,0 +1,124 @@
+---
+import Layout from '@/src/layouts/Layout.astro'
+import { getVerseOfDay, months } from '@/src/shared/services/bible';
+import { Icon } from 'astro-icon/components'
+
+export const formatDate = function(dayOrMonth: number) {
+  return dayOrMonth.toString().padStart(2, '0');
+}
+
+export const getDates = function(day: number, month: number) {
+  const nextDate = new Date(2025, month - 1, day);
+  nextDate.setDate(nextDate.getDate() + 1);
+  const prevDate = new Date(2025, month - 1, day);
+  prevDate.setDate(prevDate.getDate() - 1);
+
+  return {
+    nextDate: {
+      day: formatDate(nextDate.getDate()),
+      month: formatDate(nextDate.getMonth() + 1)
+    },
+    prevDate: {
+      day: formatDate(prevDate.getDate()),
+      month: formatDate(prevDate.getMonth() + 1)
+    }
+  }
+}
+
+export async function getStaticPaths() {
+  const pages = [];
+
+  for (let month = 1; month <= 12; month++) {
+    const daysOfMonth = month === 2 ? 28 : (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12 ) ? 31 : 30
+    for (let day = 1; day <= daysOfMonth; day++) {
+      pages.push({ params: {
+        version: 'naa',
+        day: formatDate(day),
+        month: formatDate(month),
+        part: 'at'
+      }})
+
+      pages.push({ params: {
+        version: 'naa',
+        day: formatDate(day),
+        month: formatDate(month),
+        part: 'nt'
+      }})
+
+      pages.push({ params: {
+        version: 'naa',
+        day: formatDate(day),
+        month: formatDate(month),
+        part: 'sl'
+      }})
+
+      pages.push({ params: {
+        version: 'naa',
+        day: formatDate(day),
+        month: formatDate(month),
+        part: 'pv'
+      }})
+    }
+  }
+
+  return pages;
+}
+
+const { version, month, day, part } = Astro.params;
+
+const result = getVerseOfDay(month, day, part)
+const dates = getDates(parseInt(day), parseInt(month))
+const basePath = `/${version}/${month}/${day}/`
+
+const sections = [
+  {
+    name: 'AT',
+    link: basePath + 'at',
+    active: part === 'at'
+  },
+  {
+    name: 'NT',
+    link: basePath + 'nt',
+    active: part === 'nt'
+  },
+  {
+    name: 'Salmos',
+    link: basePath + 'sl',
+    active: part === 'sl'
+  },
+  {
+    name: 'Provérbios',
+    link: basePath + 'pv',
+    active: part === 'pv'
+  },
+]
+---
+
+<Layout>
+  <header class="sticky top-0 bg-white w-full">
+    <nav class="flex justify-between items-center">
+      <a class="ml-4" title="voltar" href={ `/${version}/${dates.prevDate.month}/${dates.prevDate.day}/at` }>
+        <Icon name="mdi:arrow-left" size="24" />
+      </a>
+      <strong class="text-xl text-center p-4">{day} de {months[parseInt(month) - 1]}</strong>
+      <a class="mr-4" title="avançar" href={ `/${version}/${dates.nextDate.month}/${dates.nextDate.day}/at` }>
+        <Icon name="mdi:arrow-right" size="24" />
+      </a>
+    </nav>
+
+    <ul class="flex justify-center items-center p-4">
+      {sections.map(item => (
+        <li class={ item.active ? 'rounded-2xl bg-blue-500 mr-2 text-white' : 'rounded-2xl bg-gray-400 mr-2 text-white'}>
+          <a class="block px-4 py-2 text-sm" href={ item.link }>{ item.name }</a>
+        </li>
+      ))}
+    </ul>
+  </header>
+
+  <article class="p-4">
+    <strong class="text-xl block font-semibold text-black">{result?.title}</strong>
+    {result?.content.map(item => (
+      <p class=""><small class="text-xs">{item.chapter}.{item.verse}</small> {item.text}</p>
+    ))}
+  </article>
+</Layout>
