@@ -27,37 +27,22 @@ export const getDates = function(day: number, month: number) {
 
 export async function getStaticPaths() {
   const pages = [];
+  const versions = ['naa'];
+  const parts = ['at', 'nt', 'sl', 'pv'];
 
   for (let month = 1; month <= 12; month++) {
     const daysOfMonth = month === 2 ? 28 : (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12 ) ? 31 : 30
     for (let day = 1; day <= daysOfMonth; day++) {
-      pages.push({ params: {
-        version: 'naa',
-        day: formatDate(day),
-        month: formatDate(month),
-        part: 'at'
-      }})
-
-      pages.push({ params: {
-        version: 'naa',
-        day: formatDate(day),
-        month: formatDate(month),
-        part: 'nt'
-      }})
-
-      pages.push({ params: {
-        version: 'naa',
-        day: formatDate(day),
-        month: formatDate(month),
-        part: 'sl'
-      }})
-
-      pages.push({ params: {
-        version: 'naa',
-        day: formatDate(day),
-        month: formatDate(month),
-        part: 'pv'
-      }})
+      versions.forEach(version => {
+        parts.forEach(part => {
+          pages.push({ params: {
+            version: version,
+            day: formatDate(day),
+            month: formatDate(month),
+            part
+          }});
+        });
+      });
     }
   }
 
@@ -106,21 +91,21 @@ const sections = [
       </a>
     </nav>
 
-    <div class="flex items-center justify-between">
-      <ul class="flex items-center p-4">
+    <div class="flex items-center justify-between p-4">
+      <a href="/" type="button" class="border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 mr-4">        
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z" />
+        </svg>
+        <span class="sr-only">Icon description</span>
+      </a>
+
+      <ul class="flex items-center">
         {sections.map(item => (
           <li class={ item.active ? 'rounded-2xl bg-blue-500 mr-2 text-white' : 'rounded-2xl bg-gray-400 mr-2 text-white'}>
             <a class="block px-4 py-2 text-sm" href={ item.link }>{ item.name }</a>
           </li>
         ))}
       </ul>
-
-      <button data-confetti-button type="button" class="border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 mr-4">
-        <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
-        </svg>
-        <span class="sr-only">Icon description</span>
-      </button>
     </div>
   </header>
 
@@ -131,14 +116,3 @@ const sections = [
     ))}
   </article>
 </Layout>
-
-<script>
-  import confetti from 'canvas-confetti';
-
-  const button = document.querySelector('[data-confetti-button]');
-  button.addEventListener('click', () => confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 }
-  }));
-</script>

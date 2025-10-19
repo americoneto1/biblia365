@@ -2171,7 +2171,7 @@ export const plano = [
     "Mês": "Setembro",
     "dia do mês": "dia 29",
     "Antigo Testamento": "Is 57.14-59.21",
-    "Novo Testamento": "Fl 1.1-26",
+    "Novo Testamento": "Fp 1.1-26",
     "Salmos": "Sl 71.1-24",
     "Provérbios": "Pv 24.9-10"
   },
@@ -2179,7 +2179,7 @@ export const plano = [
     "Mês": "Setembro",
     "dia do mês": "dia 30",
     "Antigo Testamento": "Is 60.1-62.5",
-    "Novo Testamento": "Fl 1.27-2.18",
+    "Novo Testamento": "Fp 1.27-2.18",
     "Salmos": "Sl 72.1-20",
     "Provérbios": "Pv 24.11-12"
   },
@@ -2187,7 +2187,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 01",
     "Antigo Testamento": "Is 62.6-65.25",
-    "Novo Testamento": "Fl 2.19-3.1",
+    "Novo Testamento": "Fp 2.19-3.1",
     "Salmos": "Sl 73.1-28",
     "Provérbios": "Pv 24.13-14"
   },
@@ -2195,7 +2195,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 02",
     "Antigo Testamento": "Is 66.1-24",
-    "Novo Testamento": "Fl 3.2-21",
+    "Novo Testamento": "Fp 3.2-21",
     "Salmos": "Sl 74.1-23",
     "Provérbios": "Pv 24.15-16"
   },
@@ -2203,7 +2203,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 03",
     "Antigo Testamento": "Jr 1.1-2.28",
-    "Novo Testamento": "Fl 4.1-23",
+    "Novo Testamento": "Fp 4.1-23",
     "Salmos": "Sl 75.1-10",
     "Provérbios": "Pv 24.17-20"
   },
@@ -2307,7 +2307,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 16",
     "Antigo Testamento": "Jr 28.1-29.32",
-    "Novo Testamento": "1Tm 1.1-20",
+    "Novo Testamento": "1Tn 1.1-20",
     "Salmos": "Sl 86.1-17",
     "Provérbios": "Pv 25.17"
   },
@@ -2315,7 +2315,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 17",
     "Antigo Testamento": "Jr 30.1-31.26",
-    "Novo Testamento": "1Tm 2.1-15",
+    "Novo Testamento": "1Tn 2.1-15",
     "Salmos": "Sl 87.1-7",
     "Provérbios": "Pv 25.18-19"
   },
@@ -2323,7 +2323,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 18",
     "Antigo Testamento": "Jr 31.27-32.44",
-    "Novo Testamento": "1Tm 3.1-16",
+    "Novo Testamento": "1Tn 3.1-16",
     "Salmos": "Sl 88.1-18",
     "Provérbios": "Pv 25.20-22"
   },
@@ -2331,7 +2331,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 19",
     "Antigo Testamento": "Jr 33.1-34.22",
-    "Novo Testamento": "1Tm 4.1-16",
+    "Novo Testamento": "1Tn 4.1-16",
     "Salmos": "Sl 89.1-13",
     "Provérbios": "Pv 25.23-24"
   },
@@ -2339,7 +2339,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 20",
     "Antigo Testamento": "Jr 35.1-36.32",
-    "Novo Testamento": "1Tm 5.1-25",
+    "Novo Testamento": "1Tn 5.1-25",
     "Salmos": "Sl 89.14-37",
     "Provérbios": "Pv 25.25-27"
   },
@@ -2347,7 +2347,7 @@ export const plano = [
     "Mês": "Outubro",
     "dia do mês": "dia 21",
     "Antigo Testamento": "Jr 37.1-38.28",
-    "Novo Testamento": "1Tm 6.1-21",
+    "Novo Testamento": "1Tn 6.1-21",
     "Salmos": "Sl 89.38-52",
     "Provérbios": "Pv 25.28"
   },
