@@ -26,7 +26,7 @@ export const getDates = function(day: number, month: number) {
 }
 
 export async function getStaticPaths() {
-  const pages = [];
+  const pages: { params: { version: string; day: string; month: string; part: string; }; }[] = [];
   const versions = ['naa'];
   const parts = ['at', 'nt', 'sl', 'pv'];
 
@@ -92,20 +92,22 @@ const sections = [
     </nav>
 
     <div class="flex items-center justify-between p-4">
-      <a href="/" type="button" class="border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 mr-4">        
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z" />
-        </svg>
-        <span class="sr-only">Icon description</span>
-      </a>
+      <div class="flex items-center">
+        <div class="inline-flex items-center gap-2" role="group" aria-label="Ajustar tamanho da fonte">
+          <button id="font-decrease" data-font-action="decrease" class="border border-blue-700 text-blue-700 bg-transparent px-2 py-1 rounded-full text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-300" title="Diminuir fonte">A-</button>
+          <button id="font-increase" data-font-action="increase" class="border border-blue-700 text-blue-700 bg-transparent px-2 py-1 rounded-full text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-300" title="Aumentar fonte">A+</button>
+        </div>
+      </div>
 
-      <ul class="flex items-center">
-        {sections.map(item => (
-          <li class={ item.active ? 'rounded-2xl bg-blue-500 mr-2 text-white' : 'rounded-2xl bg-gray-400 mr-2 text-white'}>
-            <a class="block px-4 py-2 text-sm" href={ item.link }>{ item.name }</a>
-          </li>
-        ))}
-      </ul>
+      <div class="flex items-center">
+        <div class="inline-flex items-center gap-2" role="group" aria-label="Ajustar tamanho da fonte">
+          {sections.map(item => (
+            <div class={ item.active ? 'rounded-2xl bg-blue-500 text-white' : 'rounded-2xl bg-gray-200 text-blue-700'}>
+              <a class="block px-2 py-1 text-sm" href={ item.link }>{ item.name }</a>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </header>
 

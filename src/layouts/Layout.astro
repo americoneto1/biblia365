@@ -7,7 +7,8 @@ import '../styles/global.css'
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="title" content="Biblia 365">
@@ -17,6 +18,34 @@ import '../styles/global.css'
 	<body>
 		<slot />
 		<ClientRouter />
+
+		<script type="module">
+		(function(){
+			const STORAGE_KEY = 'b365-font-size';
+			const MIN = 12, MAX = 28, STEP = 1;
+			function apply(size){
+				document.documentElement.style.setProperty('--article-font-size', size + 'px');
+			}
+			const stored = parseInt(localStorage.getItem(STORAGE_KEY));
+			let size = Number.isFinite(stored) ? stored : 16;
+			apply(size);
+			window.b365Font = {
+				get size(){ return size; },
+				set size(v){ size = Math.max(MIN, Math.min(MAX, v)); apply(size); localStorage.setItem(STORAGE_KEY, String(size)); },
+				increase(){ this.size = size + STEP; },
+				decrease(){ this.size = size - STEP; }
+			};
+
+			function onClick(e){
+				const target = e.target.closest && e.target.closest('[data-font-action]');
+				if(!target) return;
+				const action = target.getAttribute('data-font-action');
+				if(action === 'increase') window.b365Font.increase();
+				else if(action === 'decrease') window.b365Font.decrease();
+			}
+			document.addEventListener('click', onClick);
+		})();
+		</script>
 	</body>
 </html>
 
