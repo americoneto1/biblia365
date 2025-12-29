@@ -55,6 +55,31 @@ const result = getVerseOfDay(month, day, part)
 const dates = getDates(parseInt(day), parseInt(month))
 const basePath = `/${version}/${month}/${day}/`
 
+// Get all 4 daily readings for WhatsApp share
+const atReading = getVerseOfDay(month, day, 'at');
+const ntReading = getVerseOfDay(month, day, 'nt');
+const slReading = getVerseOfDay(month, day, 'sl');
+const pvReading = getVerseOfDay(month, day, 'pv');
+
+// Calculate day of year (día do año)
+const dayOfYear = Math.floor((new Date(2025, parseInt(month) - 1, parseInt(day)).getTime() - new Date(2025, 0, 0).getTime()) / 86400000);
+
+// Build share text for WhatsApp
+const pageUrl = `${Astro.url.origin}/${version}/${month}/${day}/at`;
+const shareText = `*Dia ${dayOfYear}:*
+${atReading?.title || ''}
+${ntReading?.title || ''}
+${slReading?.title || ''}
+${pvReading?.title || ''}
+
+${pageUrl}
+
+*Reflexão:* 
+digite_aqui
+`;
+
+const whatsappLink = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+
 const sections = [
   {
     name: 'AT',
@@ -112,7 +137,12 @@ const sections = [
   </header>
 
   <article class="pt-14 p-4 mt-20">
-    <strong class="text-xl block font-semibold">{result?.title}</strong>
+    <div class="flex items-center justify-between mb-2">
+      <strong class="text-xl block font-semibold">{result?.title}</strong>
+      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" title="Compartilhar no WhatsApp" class="border border-green-500 text-white bg-green-500 px-1 py-1 rounded-full">
+        <Icon name="mdi:whatsapp" size="20" />
+      </a>
+    </div>
     {result?.content.map(item => (
       <p class=""><small class="text-xs">{item.chapter}.{item.verse}</small> {item.text}</p>
     ))}
