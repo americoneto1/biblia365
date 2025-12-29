@@ -1,6 +1,12 @@
 ---
 import { ClientRouter } from 'astro:transitions'
 import '../styles/global.css'
+
+interface Props {
+  description?: string;
+}
+
+const { description = "Leitura bíblica diária" } = Astro.props;
 ---
 
 <!doctype html>
@@ -12,7 +18,7 @@ import '../styles/global.css'
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="title" content="Biblia 365">
-		<meta name="description" content="Leitura biblica diária">
+		<meta name="description" content={description}>
 		<title>Biblia 365</title>
 	</head>
 	<body>

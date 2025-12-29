@@ -65,7 +65,7 @@ const pvReading = getVerseOfDay(month, day, 'pv');
 const dayOfYear = Math.floor((new Date(2025, parseInt(month) - 1, parseInt(day)).getTime() - new Date(2025, 0, 0).getTime()) / 86400000);
 
 // Build share text for WhatsApp
-const pageUrl = `${Astro.url.origin}/${version}/${month}/${day}/at`;
+const pageUrl = `https://biblia365-zeta.vercel.app/${version}/${month}/${day}/at`;
 const shareText = `*Dia ${dayOfYear}:*
 ${atReading?.title || ''}
 ${ntReading?.title || ''}
@@ -75,10 +75,10 @@ ${pvReading?.title || ''}
 ${pageUrl}
 
 *Reflexão:* 
-digite_aqui
-`;
+digite_aqui`;
 
 const whatsappLink = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+const metaDescription = `Dia ${dayOfYear}: ${atReading?.title || ''} • ${ntReading?.title || ''} • ${slReading?.title || ''} • ${pvReading?.title || ''}`;
 
 const sections = [
   {
@@ -104,7 +104,7 @@ const sections = [
 ]
 ---
 
-<Layout>
+<Layout description={metaDescription}>
   <header class="fixed top-0 bg-background w-full">
     <nav class="flex justify-between items-center">
       <a class="ml-4" title="voltar" href={ `/${version}/${dates.prevDate.month}/${dates.prevDate.day}/at` }>
