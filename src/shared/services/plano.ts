@@ -76,7 +76,7 @@ export const plano = [
     "dia do mês": "dia 10",
     "Antigo Testamento": "Gn 23.1-24.54",
     "Novo Testamento": "Mt 8.1-17",
-    "Salmos": "Sl 9.13-23",
+    "Salmos": "Sl 9.13-20",
     "Provérbios": "Pv 3.1-6"
   },
   {
