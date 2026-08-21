@@ -1851,7 +1851,7 @@ export const plano = [
     "Mês": "Agosto",
     "dia do mês": "dia 20",
     "Antigo Testamento": "Et 8.1-10.3",
-    "Novo Testamento": "1Co 12.27-13",
+    "Novo Testamento": "1Co 12.27-13.13",
     "Salmos": "Sl 37.1-11",
     "Provérbios": "Pv 21.23-24"
   },
